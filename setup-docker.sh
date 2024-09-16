@@ -37,6 +37,14 @@ sudo apt-get install \
 	docker-buildx-plugin \
 	docker-compose-plugin
 
+# ------ add RU mirrors ------
+cat << EOF | sudo tee -a /etc/docker/daemon.json
+{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud", "https://huecker.io", "https://mirror.gcr.io", "https://c.163.com", "https://registry.docker-cn.com", "https://daocloud.io" ] }
+EOF
+sudo systemctl restart docker
+
+# ------ set permissions ------
+sudo usermod -aG docker $(whoami)
+
 # ------ test -------
 sudo docker run hello-world
-
