@@ -4,10 +4,6 @@ set -a
 . ./credentials.env
 set +a
 
-# preparation
-curl -sSL https://get.docker.com | sh
-sudo usermod -aG docker $(whoami)
-
 # setup vpn app
 docker run -d \
   --name=wg-easy \
